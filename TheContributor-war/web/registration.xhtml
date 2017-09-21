@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>The Contributor</title>
+    </h:head>
+    <h:body>
+    
+        <h:form>
+            <p:messages id="msgs" closable="true"  />
+          
+                <h:outputText value="Email" />
+                <h:outputText style="color: red " value="*" /> 
+                <h:inputText id="userEmail" value="#{registrationBackingBean.user.email}"
+                             required="true" requiredMessage="Email is required"></h:inputText>
+                <br></br>
+                <h:outputText value="First Name" />
+                <h:outputText style="color: red " value="*" /> 
+                <h:inputText id="firstName" value="#{registrationBackingBean.user.firstName}"
+                             required="true" requiredMessage="First Name is required"></h:inputText>
+              <br></br>
+                <h:outputText value="Last Name" />
+                <h:outputText style="color: red " value="*" /> 
+                <h:inputText id="lastName" value="#{registrationBackingBean.user.lastName}"
+                             required="true" requiredMessage="Last Name is required"></h:inputText>
+              <br></br>
+                <h:outputText value="Password" />
+                <h:outputText style="color: red " value="*" /> 
+                <h:inputSecret id="password" value="#{registrationBackingBean.password}"
+                              required="true" requiredMessage="Password is required" ></h:inputSecret>
+             <br></br>
+                 <h:outputText value="Retype Password" />
+                <h:outputText style="color: red " value="*" /> 
+                <h:inputSecret id="repassword" value="#{registrationBackingBean.retypedPassword}"
+                              required="true" requiredMessage="Retype Password is required" ></h:inputSecret>
+           <br></br>
+             <h:outputText value="Department" />
+                <h:outputText style="color: red " value="*" /> 
+                <h:selectOneMenu id="department" value="#{registrationBackingBean.selectedDepartmentName}"
+                                  required="true" requiredMessage="Department is required"  >
+
+                    <f:selectItem itemLabel="Select Department" itemValue="" noSelectionOption="true" />
+                    <f:selectItems value="#{registrationBackingBean.departments}" var="selected" itemLabel="#{selected.name}" itemValue="#{selected.name}"  >
+
+                    </f:selectItems>
+                </h:selectOneMenu>
+   <br></br>
+                <h:commandButton action="#{registrationBackingBean.addUser()}"
+                             value="Register"></h:commandButton>
+               
+            
+        </h:form>
+        <h:form>
+            <h:button outcome="loging"  
+                             value="Login"></h:button>
+         </h:form>
+        
+    </h:body>
+</html>
+
