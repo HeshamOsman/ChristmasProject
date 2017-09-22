@@ -80,7 +80,9 @@ public class LoginBackingBean implements Serializable{
 //        (currentUser.getId(), currentUser.getEmail(), currentUser.getFirstName(), currentUser.getLastName()));
             SessionUtils.setLoggedUser(new UserDTO
         (currentUser.getId(), currentUser.getEmail(), currentUser.getFirstName(),
-                currentUser.getLastName(),rolePermissionFacade.findAllPermissionForRole(currentUser.getDepartmentRole().getRole())));
+                currentUser.getLastName(),currentUser.getDepartmentRole().getDepartment().getId(),
+                currentUser.getDepartmentRole().getRole().getId(),currentUser.getDepartmentRole().getId()
+                ,rolePermissionFacade.findAllPermissionForRole(currentUser.getDepartmentRole().getRole())));
             
 //            UserDTO d= SessionUtils.getLoggedUser();
 //            System.out.println(">><<<>>><<<>>"+d.getEmail());

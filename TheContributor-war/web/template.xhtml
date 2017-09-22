@@ -25,16 +25,28 @@
                     <p:menubar>
                         <p:submenu label="Complaint" rendered="#{menuBackingBean.renderComplaint}" >
                             <p:menuitem rendered="#{menuBackingBean.renderNewComplaint}" value="New Complaint" url="#" />
-                            <p:menuitem rendered="#{menuBackingBean.renderListMyComplaint}" value="My Complaints" url="#?" />
-                            <p:menuitem rendered="#{menuBackingBean.renderListDepartmentComplaint}" value="Department Complaints" url="#?" />
-                            <p:menuitem rendered="#{menuBackingBean.renderListCompanyComplaint}" value="Company Complaints" url="#?" />
+                            <p:menuitem rendered="#{menuBackingBean.renderListMyComplaint}" value="My Complaints" outcome="complaintsListing"  >
+                                <f:param name="scope" value="user" />
+                            </p:menuitem>
+                            <p:menuitem rendered="#{menuBackingBean.renderListDepartmentComplaint}" value="Department Complaints" outcome="complaintsListing" >
+                                <f:param name="scope" value="department" />
+                            </p:menuitem>
+                            <p:menuitem rendered="#{menuBackingBean.renderListCompanyComplaint}" value="Company Complaints" outcome="complaintsListing" >
+                                <f:param name="scope" value="company" />
+                            </p:menuitem>
                         </p:submenu>
 
                         <p:submenu label="Suggestion" rendered="#{menuBackingBean.renderSuggestion}" >
                             <p:menuitem rendered="#{menuBackingBean.renderNewSuggestion}" value="New Suggestion" url="#" />
-                            <p:menuitem rendered="#{menuBackingBean.renderListMySuggestion}" value="My Suggestions" url="#?" />
-                            <p:menuitem rendered="#{menuBackingBean.renderListDepartmentSuggestion}" value="Department Suggestions" url="#?" />
-                            <p:menuitem rendered="#{menuBackingBean.renderListCompanySuggestion}" value="Company Suggestions" url="#?" />
+                            <p:menuitem rendered="#{menuBackingBean.renderListMySuggestion}" value="My Suggestions" url="#?" >
+                                <f:param name="scope" value="user" />
+                            </p:menuitem>
+                            <p:menuitem rendered="#{menuBackingBean.renderListDepartmentSuggestion}" value="Department Suggestions" url="#?" >
+                                <f:param name="scope" value="department" />
+                            </p:menuitem>
+                            <p:menuitem rendered="#{menuBackingBean.renderListCompanySuggestion}" value="Company Suggestions" url="#?" >
+                                <f:param name="scope" value="company" />
+                            </p:menuitem>
                         </p:submenu>
                         <p:submenu label="User" rendered="#{menuBackingBean.renderUser}" >
                             <p:menuitem rendered="#{menuBackingBean.renderNewUser}" value="New User" outcome="addUser" />

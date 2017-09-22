@@ -8,7 +8,7 @@ package com.sypron.dto;
 import com.sypron.entity.Permission;
 import java.io.Serializable;
 import java.util.List;
-import javax.sound.midi.Sequencer;
+
 import org.apache.commons.collections4.map.MultiKeyMap;
 
 /**
@@ -21,15 +21,22 @@ public class UserDTO implements Serializable{
     private String email;
     private String firstName;
     private String lastName;
+    private Integer userDepartmentId;
+    private Integer userRoleId;
+    private Integer userDepartmentRoleId;
     private List<Permission> permissions;
     private MultiKeyMap<String,Boolean> permissionsMap;
-    public UserDTO(Integer id, String email, String firstName
-            , String lastName,List<Permission> permissions) {
+    public UserDTO(Integer id, String email, String firstName,String lastName,
+           Integer userDepartmentId , Integer userRoleId ,Integer userDepartmentRoleId
+            ,List<Permission> permissions) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.permissions = permissions;
+        this.userDepartmentId =userDepartmentId;
+        this.userRoleId = userRoleId;
+        this.userDepartmentRoleId= userDepartmentRoleId;
         permissionsMap = new MultiKeyMap<>();
         
         for(Permission permission:permissions){
@@ -90,6 +97,31 @@ public class UserDTO implements Serializable{
     public void setPermissions(List<Permission> permissions) {
         this.permissions = permissions;
     }
+
+    public Integer getUserDepartmentId() {
+        return userDepartmentId;
+    }
+
+    public void setUserDepartmentId(Integer userDepartmentId) {
+        this.userDepartmentId = userDepartmentId;
+    }
+
+    public Integer getUserRoleId() {
+        return userRoleId;
+    }
+
+    public void setUserRoleId(Integer userRoleId) {
+        this.userRoleId = userRoleId;
+    }
+
+    public Integer getUserDepartmentRoleId() {
+        return userDepartmentRoleId;
+    }
+
+    public void setUserDepartmentRoleId(Integer userDepartmentRoleId) {
+        this.userDepartmentRoleId = userDepartmentRoleId;
+    }
+    
     
     
     
