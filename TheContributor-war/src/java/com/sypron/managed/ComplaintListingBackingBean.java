@@ -10,6 +10,7 @@ import com.sypron.entity.Complaint;
 import com.sypron.entity.Complaint_;
 import com.sypron.facade.ComplaintFacade;
 import com.sypron.util.SessionUtils;
+import java.io.IOException;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -20,6 +21,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import org.primefaces.event.SelectEvent;
 
 /**
@@ -97,9 +99,16 @@ public class ComplaintListingBackingBean {
         this.complaints = complaints;
     }
     
-    public void onRowSelected(SelectEvent event){
-        FacesMessage msg = new FacesMessage("Car Selected", ((Complaint) event.getObject()).getSubject());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+    public void onRowSelected(SelectEvent event) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest origRequest = (HttpServletRequest) context.getExternalContext().getRequest();
+        String contextPath = origRequest.getContextPath();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect(contextPath + "/viewComplaint.xhtml?complaintId="+((Complaint) event.getObject()).getId());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
 }

@@ -24,7 +24,7 @@
 
                     <p:menubar>
                         <p:submenu label="Complaint" rendered="#{menuBackingBean.renderComplaint}" >
-                            <p:menuitem rendered="#{menuBackingBean.renderNewComplaint}" value="New Complaint" url="#" />
+                            <p:menuitem rendered="#{menuBackingBean.renderNewComplaint}" value="New Complaint" outcome="complaintForm" />
                             <p:menuitem rendered="#{menuBackingBean.renderListMyComplaint}" value="My Complaints" outcome="complaintsListing"  >
                                 <f:param name="scope" value="user" />
                             </p:menuitem>

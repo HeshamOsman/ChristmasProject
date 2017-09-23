@@ -31,6 +31,7 @@ public class HomeBackingBean implements Serializable {
      */
     @Inject
     UserFacade userFacade;
+    private String ss;
     
     public HomeBackingBean() {
     }
@@ -40,6 +41,14 @@ public class HomeBackingBean implements Serializable {
         System.out.println("Hes>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>."+SessionUtils.getLoggedUser().getEmail());
         us.add(SessionUtils.getLoggedUser());
         return us;
+    }
+
+    public String getSs() {
+        return ss;
+    }
+
+    public void setSs(String ss) {
+        this.ss = ss;
     }
     
     

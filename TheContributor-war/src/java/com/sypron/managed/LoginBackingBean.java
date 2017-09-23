@@ -119,7 +119,16 @@ try {
     public String logout() {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
+          FacesContext context = FacesContext.getCurrentInstance();
+            HttpServletRequest origRequest = (HttpServletRequest)context.getExternalContext().getRequest();
+    String contextPath = origRequest.getContextPath();
+try {
+        FacesContext.getCurrentInstance().getExternalContext()
+                .redirect(contextPath  + "/loging.xhtml");
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
         
-        return "loging";
+        return null;
     }
 }

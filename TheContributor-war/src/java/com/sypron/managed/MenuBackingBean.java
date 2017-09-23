@@ -71,7 +71,7 @@ public class MenuBackingBean implements Serializable {
     public boolean isRenderComplaint() {
         if(isRenderNewComplaint()||isRenderListDepartmentComplaint()
                 ||isRenderListCompanyComplaint()||isRenderListMyComplaint()){
-            System.out.println(">>>>>>>1True");
+//            System.out.println(">>>>>>>1True");
             return renderComplaint = true;
         }
         return renderComplaint = false;
@@ -86,7 +86,7 @@ public class MenuBackingBean implements Serializable {
             return renderNewComplaint = false;
         } else {
             if (currentUser.getPermissionsMap().containsKey("complaint", "add","non")) {
-                System.out.println(">>>>>>>2True");
+//                System.out.println(">>>>>>>2True");
                 return renderNewComplaint = true;
             } else {
                 return renderNewComplaint = false;
@@ -103,7 +103,7 @@ public class MenuBackingBean implements Serializable {
             return renderListDepartmentComplaint = false;
         } else {
             if (currentUser.getPermissionsMap().containsKey("complaint", "list", "department")) {
-                System.out.println(">>>>>>>3True");
+//                System.out.println(">>>>>>>3True");
                 return renderListDepartmentComplaint = true;
             } else {
                 return renderListDepartmentComplaint = false;
@@ -120,7 +120,7 @@ public class MenuBackingBean implements Serializable {
             return renderListCompanyComplaint = false;
         } else {
             if (currentUser.getPermissionsMap().containsKey("complaint", "list", "company")) {
-                System.out.println(">>>>>>>3True");
+//                System.out.println(">>>>>>>3True");
                 return renderListCompanyComplaint = true;
             } else {
                 return renderListCompanyComplaint = false;
@@ -137,7 +137,7 @@ public class MenuBackingBean implements Serializable {
             return renderListMyComplaint = false;
         } else {
             if (currentUser.getPermissionsMap().containsKey("complaint", "list", "user")) {
-                System.out.println(">>>>>>>4True");
+//                System.out.println(">>>>>>>4True");
                 return renderListMyComplaint = true;
             } else {
                 return renderListMyComplaint = false;
@@ -153,7 +153,7 @@ public class MenuBackingBean implements Serializable {
         
          if(isRenderNewSuggestion()||isRenderListDepartmentSuggestion()
                 ||isRenderListCompanySuggestion()||isRenderListMySuggestion()){
-             System.out.println(">>>>>>>5True");
+//             System.out.println(">>>>>>>5True");
             return renderSuggestion = true;
         }
         return renderSuggestion = false;
@@ -170,7 +170,7 @@ public class MenuBackingBean implements Serializable {
             return renderNewSuggestion = false;
         } else {
             if (currentUser.getPermissionsMap().containsKey("suggestion", "add","non")) {
-                System.out.println(">>>>>>>6True");
+//                System.out.println(">>>>>>>6True");
                 return renderNewSuggestion = true;
             } else {
                 return renderNewSuggestion = false;
@@ -204,7 +204,7 @@ public class MenuBackingBean implements Serializable {
             return renderListCompanySuggestion = false;
         } else {
             if (currentUser.getPermissionsMap().containsKey("suggestion", "list", "company")) {
-                System.out.println(">>>>>>>8True");
+//                System.out.println(">>>>>>>8True");
                 return renderListCompanySuggestion = true;
             } else {
                 return renderListCompanySuggestion = false;
@@ -221,7 +221,7 @@ public class MenuBackingBean implements Serializable {
             return renderListMySuggestion = false;
         } else {
             if (currentUser.getPermissionsMap().containsKey("suggestion", "list", "user")) {
-                System.out.println(">>>>>>>9True");
+//                System.out.println(">>>>>>>9True");
                 return renderListMySuggestion = true;
             } else {
                 return renderListMySuggestion = false;
@@ -236,7 +236,7 @@ public class MenuBackingBean implements Serializable {
     public boolean isRenderUser() {
         
          if(isRenderNewUser()||isRenderListUsers()){
-             System.out.println(">>>>>>>10True");
+//             System.out.println(">>>>>>>10True");
             return renderUser = true;
         }
         return renderUser = false;
@@ -252,7 +252,7 @@ public class MenuBackingBean implements Serializable {
             return renderNewUser = false;
         } else {
             if (currentUser.getPermissionsMap().containsKey("user", "add", "non")) {
-                System.out.println(">>>>>>>11True");
+//                System.out.println(">>>>>>>11True");
                 return renderNewUser = true;
             } else {
                 return renderNewUser = false;
@@ -269,7 +269,7 @@ public class MenuBackingBean implements Serializable {
             return renderListUsers = false;
         } else {
             if (currentUser.getPermissionsMap().containsKey("user", "list", "non")) {
-                System.out.println(">>>>>>>12True");
+//                System.out.println(">>>>>>>12True");
                 return renderListUsers = true;
             } else {
                 return renderListUsers = false;

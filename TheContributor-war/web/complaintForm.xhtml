@@ -1,0 +1,34 @@
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+        <f:view>
+
+            <h:form>
+                <p:messages id="msgs" />
+                <p:panel>
+                    <h:outputText value="Subject" />
+                    <h:inputText id="subject" value="#{complaintBackingBean.newComplaint.subject}"
+                                 required="true" requiredMessage="Subject is required"></h:inputText>
+                    <br></br>
+                    <h:outputText value="Complaint Definition" />
+                    <p:inputTextarea id="definition" value="#{complaintBackingBean.newComplaint.complaintDefinition}"
+                                 required="true" requiredMessage="Definition is required"></p:inputTextarea>
+                    <br></br>
+                    <h:outputText value="Complaint Resolution" />
+                    <p:inputTextarea id="resolution" value="#{complaintBackingBean.newComplaint.requestedResolution}"
+                                 ></p:inputTextarea>
+                    <br></br>
+                    <p:selectBooleanCheckbox value="#{complaintBackingBean.newComplaint.anonymous}" />
+                    <br></br>
+                    <h:commandButton action="#{complaintBackingBean.addComplaint()}"
+                                     value="add"></h:commandButton>
+                </p:panel>    
+
+            </h:form>
+        </f:view>
+    </ui:define>
+</ui:composition>

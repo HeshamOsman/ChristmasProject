@@ -62,6 +62,10 @@ public class Action implements Serializable {
     @JoinColumn(name = "complaint_id", referencedColumnName = "id")
     @ManyToOne
     private Complaint complaint;
+    
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private User user;
 
     public Action() {
     }
@@ -114,6 +118,14 @@ public class Action implements Serializable {
 
     public void setComplaint(Complaint complaint) {
         this.complaint = complaint;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
    

@@ -41,8 +41,9 @@ public class ComplaintFacade extends AbstractFacade<Complaint> {
                      Complaint.class).setParameter("userId", currentUserId);
                 break;
             case "department":
-                query = em.createQuery("SELECT c From Complaint c WHERE c.user.departmentRole.department.id = :userId ",
-                     Complaint.class).setParameter("userId", currentUserId);
+
+                query = em.createQuery("SELECT c From Complaint c WHERE c.user.departmentRole.department.id = :dId ",
+                     Complaint.class).setParameter("dId", departmentId);
                 break;    
             case "company":
                 query = em.createQuery("SELECT c From Complaint c ",

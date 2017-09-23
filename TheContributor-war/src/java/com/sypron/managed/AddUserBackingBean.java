@@ -12,6 +12,7 @@ import com.sypron.facade.DepartmentFacade;
 import com.sypron.facade.DepartmentRoleFacade;
 import com.sypron.facade.UserFacade;
 import com.sypron.util.PasswordEncoder;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.faces.bean.ViewScoped;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -167,7 +169,18 @@ public class AddUserBackingBean implements Serializable {
         user.setPassword(PasswordEncoder.encode(password));
         
         userFacade.create(user);
-        return "userListing";
+         FacesContext context = FacesContext.getCurrentInstance();
+            HttpServletRequest origRequest = (HttpServletRequest)context.getExternalContext().getRequest();
+    String contextPath = origRequest.getContextPath();
+try {
+        FacesContext.getCurrentInstance().getExternalContext()
+                .redirect(contextPath  + "/userListing.xhtml");
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+        
+        return null;
+      
     }
 
 }
