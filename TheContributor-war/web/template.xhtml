@@ -6,7 +6,13 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>  
-        <style>   .ui-layout-north {
+        <link href="resources/styles/mainStyles.css" rel="stylesheet" type="text/css" />
+        <style>
+            .ui-menubar,.ui-menu-child,.ui-menu {
+/*    background: #004e8e !important;*/
+background: white !important;
+}
+            .ui-layout-north {
                 z-index:20 !important;
                 overflow:visible !important;
             }
@@ -18,6 +24,7 @@
                 background:rgb(169,145,32);
 
             }</style>
+    
     </h:head>
     <body >
 
@@ -26,7 +33,7 @@
             <p:layoutUnit id="upUnit" position="north" closable="true"  >                                        
                 <h:form>  
 
-                    <p:menubar>
+                    <p:menubar style="width: 100%">
                         <p:submenu label="Complaint" rendered="#{menuBackingBean.renderComplaint}" >
                             <p:menuitem rendered="#{menuBackingBean.renderNewComplaint}" value="New Complaint" outcome="complaintForm" />
                             <p:menuitem rendered="#{menuBackingBean.renderListMyComplaint}" value="My Complaints" outcome="complaintsListing"  >
@@ -58,7 +65,7 @@
                         </p:submenu>
 
 
-                        <p:menuitem  value="Logout" icon="ui-icon-extlink" action="#{loginBackingBean.logout()}"  />
+                        <p:menuitem style=" float:right;" value="Logout" icon="ui-icon-extlink" action="#{loginBackingBean.logout()}"  />
 
                     </p:menubar>
                 </h:form>          

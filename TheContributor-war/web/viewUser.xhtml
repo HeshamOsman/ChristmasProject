@@ -1,0 +1,38 @@
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+      <ui:define name="content">
+          <f:view>
+          <f:metadata>
+              <f:viewParam id="complaint_id" name="complaintId" value="#{viewComplaintBackingBean.complaintIdParam}"
+                             required="true" requiredMessage="Please use a link from within the system"/>
+            </f:metadata>
+              
+              <p:panel>
+                  <p:outputLabel  value="#{viewComplaintBackingBean.currentComplaint.complaintDefinition}" />
+                  <br/>
+                  <p:outputLabel  value="#{viewComplaintBackingBean.currentComplaint.complaintIdentifier}" />
+                  <br/>
+                  <p:outputLabel  value="#{viewComplaintBackingBean.currentComplaint.requestedResolution}" />
+                  <br/>
+                  <p:outputLabel  value="#{(viewComplaintBackingBean.currentComplaint.anonymous)?'anonymous':viewComplaintBackingBean.currentComplaint.user.email}" />
+              </p:panel>  
+        <h:form>
+            <p:dataTable id="complaintActions"  value="#{viewComplaintBackingBean.complaintActions}" var="oneInstance" >
+                <p:column id="actiondesc" filterBy="#{oneInstance.description}"  sortBy="#{oneInstance.description}" >  
+
+                    <h:outputText  value="#{oneInstance.description}"  /> 
+
+
+                </p:column> 
+            </p:dataTable> 
+            <p:inputText rendered="#{viewComplaintBackingBean.renderAddAction}" value="#{viewComplaintBackingBean.newComplaintAction.description}"/>
+            <br/>
+            <p:commandButton action="#{viewComplaintBackingBean.addAction()}" rendered="#{viewComplaintBackingBean.renderAddAction}" value="add action" update="complaintActions"/>
+        </h:form>
+ </f:view>
+    </ui:define>
+</ui:composition>

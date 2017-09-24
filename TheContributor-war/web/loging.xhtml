@@ -8,12 +8,12 @@
         <title>The Contributor</title>
         <link href="resources/styles/mainStyles.css" rel="stylesheet" type="text/css" />    
     </h:head>
-    <h:body style="background-color: #656565">
+    <h:body >
         <!--        <p:messages id="messages" showDetail="true" closable="true"/>-->
         <h:form>
-            <h:messages id="msgs" />
+            <p:messages id="msgs" closable="true" />
 
-            <div class="login-container">
+            
                 <p:panelGrid columns="1" class="login-container" >
                     <p:graphicImage  value="resources/images/sypron_logo.png"  />
                     <p:outputLabel value="Email *" /> 
@@ -32,7 +32,7 @@
                     <h:button class="button" outcome="registration" value="registration" ></h:button> 
                  
                 </p:panelGrid>
-            </div>
+    
 
         </h:form>
 
