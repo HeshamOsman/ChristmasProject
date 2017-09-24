@@ -6,31 +6,36 @@
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>The Contributor</title>
+        <link href="resources/styles/mainStyles.css" rel="stylesheet" type="text/css" />    
     </h:head>
-    <h:body>
-<!--        <p:messages id="messages" showDetail="true" closable="true"/>-->
+    <h:body style="background-color: #656565">
+        <!--        <p:messages id="messages" showDetail="true" closable="true"/>-->
         <h:form>
-            <p:messages id="msgs" />
-<!--            <p:panelGrid columns="2">-->
+            <h:messages id="msgs" />
 
-                <h:outputText value="Email *" /> 
-                <h:inputText id="userEmail" value="#{loginBackingBean.email}"
-                             required="true" requiredMessage="Email is required"></h:inputText>
-<!--                <p:message for="userEmail" display="icon" />-->
-                <h:outputText value="Password *" />
-<!--                <p:outputLabel style="color: red " value="*" /> -->
-                <h:inputSecret id="password" value="#{loginBackingBean.password}"
-                              required="true" requiredMessage="Password is required" ></h:inputSecret>
-<!--                <p:message for="password" display="icon" />-->
-<!--            </p:panelGrid>-->
-                <h:commandButton action="#{loginBackingBean.validateUsernamePassword()}"
-                             value="Login"></h:commandButton>
-             
-            
+            <div class="login-container">
+                <p:panelGrid columns="1" class="login-container" >
+                    <p:graphicImage  value="resources/images/sypron_logo.png"  />
+                    <p:outputLabel value="Email *" /> 
+                    <p:inputText id="userEmail" value="#{loginBackingBean.email}"
+                                 required="true" requiredMessage="Email is required"></p:inputText>
+
+                    <p:outputLabel value="Password *" />
+
+                    <p:password id="password" value="#{loginBackingBean.password}"
+                                required="true" requiredMessage="Password is required" ></p:password>
+
+
+                    <h:commandButton action="#{loginBackingBean.validateUsernamePassword()}"
+                                     value="Login" class="button"></h:commandButton>
+
+                    <h:button class="button" outcome="registration" value="registration" ></h:button> 
+                 
+                </p:panelGrid>
+            </div>
+
         </h:form>
-<h:form >
-    <h:button  outcome="registration" value="registration" ></h:button> 
-       </h:form>
+
     </h:body>
 </html>
 
