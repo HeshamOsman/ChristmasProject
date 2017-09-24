@@ -13,14 +13,18 @@ import com.sypron.facade.ActionFacade;
 import com.sypron.facade.ComplaintFacade;
 import com.sypron.facade.StatusFacade;
 import com.sypron.util.SessionUtils;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -43,21 +47,46 @@ public class ViewComplaintBackingBean {
     private Integer complaintIdParam;
     private List<Action> complaintActions;
     private Action newComplaintAction;
+    private boolean renderAddAction;
     
     /**
      * Creates a new instance of viewComplaint
      */
     public ViewComplaintBackingBean() {
-        currentUserDTO = SessionUtils.getLoggedUser();
+       
         newComplaintAction = new Action();
 //        complaintActions = new ArrayList<>();
     }
+    @PostConstruct
+    public void onInit(){
+         currentUserDTO = SessionUtils.getLoggedUser();
+    }
 
     public Complaint getCurrentComplaint() {
-        if(currentComplaint == null){
+        if (currentComplaint == null && complaintIdParam != null) {
             currentComplaint = complaintFacade.find(complaintIdParam);
         }
-        return currentComplaint;
+        if (currentUserDTO.getPermissionsMap()
+                .get("complaint", "list", "department")!=null || currentUserDTO.getPermissionsMap()
+                .get("complaint", "list", "company")!=null
+                ) {
+            renderAddAction = true;
+            return currentComplaint;
+        }else if( currentComplaint.getUser().getId().equals(currentUserDTO.getId())){
+            renderAddAction = false;
+            return currentComplaint;
+        }else {
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpServletRequest origRequest = (HttpServletRequest) context.getExternalContext().getRequest();
+            String contextPath = origRequest.getContextPath();
+            try {
+                FacesContext.getCurrentInstance().getExternalContext()
+                        .redirect(contextPath + "/complaintsListing.xhtml?scope=user");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 
     public void setCurrentComplaint(Complaint currentComplaint) {
@@ -91,6 +120,16 @@ public class ViewComplaintBackingBean {
     public void setNewComplaintAction(Action newComplaintAction) {
         this.newComplaintAction = newComplaintAction;
     }
+
+    public boolean isRenderAddAction() {
+        return renderAddAction;
+    }
+
+    public void setRenderAddAction(boolean renderAddAction) {
+        this.renderAddAction = renderAddAction;
+    }
+    
+    
     
     public void addAction(){
         newComplaintAction.setActionDate(new Date());
@@ -102,6 +141,7 @@ public class ViewComplaintBackingBean {
             complaintActions = new ArrayList<>();
         }
         complaintActions.add(newComplaintAction);
+        newComplaintAction = new Action();
     }
     
 }

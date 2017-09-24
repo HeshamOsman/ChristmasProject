@@ -9,6 +9,7 @@ import com.sypron.dto.UserDTO;
 import com.sypron.entity.Complaint;
 import com.sypron.entity.Complaint_;
 import com.sypron.facade.ComplaintFacade;
+import com.sypron.facade.StatusFacade;
 import com.sypron.util.SessionUtils;
 import java.io.IOException;
 import java.util.List;
@@ -34,7 +35,8 @@ public class ComplaintListingBackingBean {
     
     @Inject
     private ComplaintFacade complaintFacade;
-    
+    @Inject
+    private StatusFacade statusFacade;
 //    @ManagedProperty("#{param.scope}")
     private String scope;
     private String ini = "int";
@@ -100,12 +102,19 @@ public class ComplaintListingBackingBean {
     }
     
     public void onRowSelected(SelectEvent event) {
+        Complaint complaintFromEvent = (Complaint) event.getObject();
+        if((currentUserDTO.getPermissionsMap()
+                .get("complaint", "list", "department")!=null || currentUserDTO.getPermissionsMap()
+                .get("complaint", "list", "company")!=null)&&complaintFromEvent.getStatus().getName().equals("new")){
+            complaintFromEvent.setStatus(statusFacade.getStatusByName("viewed"));
+            complaintFacade.edit(complaintFromEvent);
+        }
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest origRequest = (HttpServletRequest) context.getExternalContext().getRequest();
         String contextPath = origRequest.getContextPath();
         try {
             FacesContext.getCurrentInstance().getExternalContext()
-                    .redirect(contextPath + "/viewComplaint.xhtml?complaintId="+((Complaint) event.getObject()).getId());
+                    .redirect(contextPath + "/viewComplaint.xhtml?complaintId="+complaintFromEvent.getId());
         } catch (IOException e) {
             e.printStackTrace();
         }

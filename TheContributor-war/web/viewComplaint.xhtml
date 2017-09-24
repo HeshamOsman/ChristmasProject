@@ -29,9 +29,9 @@
 
                 </p:column> 
             </p:dataTable> 
-            <p:inputText value="#{viewComplaintBackingBean.newComplaintAction.description}"/>
+            <p:inputText rendered="#{viewComplaintBackingBean.renderAddAction}" value="#{viewComplaintBackingBean.newComplaintAction.description}"/>
             <br/>
-            <p:commandButton action="#{viewComplaintBackingBean.addAction()}" value="add action" update="complaintActions"/>
+            <p:commandButton action="#{viewComplaintBackingBean.addAction()}" rendered="#{viewComplaintBackingBean.renderAddAction}" value="add action" update="complaintActions"/>
         </h:form>
  </f:view>
     </ui:define>

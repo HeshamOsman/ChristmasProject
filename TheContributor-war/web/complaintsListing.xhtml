@@ -17,24 +17,25 @@
                          paginator="true" rows="10"  
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                          rowsPerPageTemplate="5,10,15"
+                         rowStyleClass="#{oneInstance.status.name=='new' ? 'yellow': null}"
                   >
                 <p:ajax event="rowSelect"  listener="#{complaintListingBackingBean.onRowSelected}"/>
 
-                <p:column id="subject" filterBy="#{oneInstance.subject}" filterMatchMode="#{common.filterMatchMode}" sortBy="#{oneInstance.subject}" >  
+                <p:column id="subject" filterBy="#{oneInstance.subject}" filterMatchMode="contains" sortBy="#{oneInstance.subject}" >  
 
                     <h:outputText  value="#{oneInstance.subject}"  /> 
 
 
                 </p:column> 
 
-                <p:column id="ident" filterBy="#{oneInstance.complaintIdentifier}" filterMatchMode="#{common.filterMatchMode}" sortBy="#{oneInstance.complaintIdentifier}" >  
+                <p:column id="ident" filterBy="#{oneInstance.complaintIdentifier}" filterMatchMode="contains" sortBy="#{oneInstance.complaintIdentifier}" >  
 
                     <h:outputText  value="#{oneInstance.complaintIdentifier}"  /> 
 
 
                 </p:column> 
                 
-                <p:column id="status" filterBy="#{oneInstance.status.name}" filterMatchMode="#{common.filterMatchMode}" sortBy="#{oneInstance.status.name}" >  
+                <p:column id="status" filterBy="#{oneInstance.status.name}" filterMatchMode="contains" sortBy="#{oneInstance.status.name}" >  
 
                     <h:outputText  value="#{oneInstance.status.name}"  /> 
 
