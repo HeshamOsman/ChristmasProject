@@ -68,6 +68,9 @@ public class User implements Serializable {
     @Size(min = 1, max = 150)
     @Column(name = "email")
     private String email;
+    @NotNull
+    @Column(name = "active")
+    private Boolean active;
     @Size(max = 100)
     @Column(name = "tel")
     private String tel;
@@ -159,6 +162,18 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+  
+    
+    
 
 //    @XmlTransient
 //    public List<Complaint> getComplaintList() {

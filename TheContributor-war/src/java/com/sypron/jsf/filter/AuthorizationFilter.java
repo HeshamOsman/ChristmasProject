@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 package com.sypron.jsf.filter;
+import com.sypron.dto.UserDTO;
+import com.sypron.entity.Permission;
+import com.sypron.util.PageAuthorization;
+import static com.sypron.util.PageAuthorization.PERMISSIONSMAP;
+import com.sypron.util.SessionUtils;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -48,16 +53,46 @@ public class AuthorizationFilter implements Filter {
                         }
                         
 			if (reqURI.indexOf("/loging.xhtml") >= 0
-                                        ||reqURI.indexOf("resource") >= 0
+                                        ||reqURI.indexOf("resource/") >= 0
                                         ||reqURI.indexOf("javax.faces.resource") >= 0
-					|| (ses != null && ses.getAttribute("userInfo") != null)
+					||reqURI.indexOf("/notAuthorized.xhtml") >= 0
 //					|| reqURI.indexOf("/public/") >= 0
                                         || reqURI.indexOf("/registration.xhtml") >= 0
 //					|| reqURI.contains("javax.faces.resource")
-                                )
-				chain.doFilter(request, response);
-			else
-				resp.sendRedirect(reqt.getContextPath() + "/registration.xhtml");
+                                ){
+                            	chain.doFilter(request, response);
+                        }else if(ses != null && ses.getAttribute("userInfo") != null){
+                            UserDTO currentUserDTO = (UserDTO)ses.getAttribute("userInfo");
+                            if(!currentUserDTO.getActive()){
+                                resp.sendRedirect(reqt.getContextPath() + "/notAuthorized.xhtml");
+                            }else if(reqURI.indexOf("/homePage.xhtml") >= 0
+                                    ||reqURI.indexOf("/template.xhtml") >= 0 ){
+                                chain.doFilter(request, response);
+                            }else{
+                                String[] reqURISplited=reqURI.split("/");
+                                String pageNameWithParam = reqURISplited[reqURISplited.length-1];
+                                String[] pageNameWithParamSplited = pageNameWithParam.split("\\?");
+                                String purePageName = pageNameWithParamSplited[0];
+                                if(purePageName.equals("TheContributor-war") ){
+                                      chain.doFilter(request, response);
+                                        return;
+                                }
+                                
+                                for(Permission per:currentUserDTO.getPermissions()){
+                                
+                                    if(PageAuthorization.PERMISSIONSMAP.get(purePageName, per.getName(),per.getMethod())!= null){
+                                
+                                        chain.doFilter(request, response);
+                                        return;
+                                    }
+                                }
+                                
+                                resp.sendRedirect(reqt.getContextPath() + "/notAuthorized.xhtml");
+                            }
+                        }else{
+                            resp.sendRedirect(reqt.getContextPath() + "/registration.xhtml");
+                        }
+				
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

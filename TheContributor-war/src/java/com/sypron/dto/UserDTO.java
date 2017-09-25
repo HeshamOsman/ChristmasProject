@@ -25,10 +25,11 @@ public class UserDTO implements Serializable{
     private Integer userRoleId;
     private Integer userDepartmentRoleId;
     private List<Permission> permissions;
+    private Boolean active;
     private MultiKeyMap<String,Boolean> permissionsMap;
     public UserDTO(Integer id, String email, String firstName,String lastName,
            Integer userDepartmentId , Integer userRoleId ,Integer userDepartmentRoleId
-            ,List<Permission> permissions) {
+            ,Boolean active,List<Permission> permissions) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
@@ -37,6 +38,7 @@ public class UserDTO implements Serializable{
         this.userDepartmentId =userDepartmentId;
         this.userRoleId = userRoleId;
         this.userDepartmentRoleId= userDepartmentRoleId;
+        this.active= active;
         permissionsMap = new MultiKeyMap<>();
         
         for(Permission permission:permissions){
@@ -120,6 +122,14 @@ public class UserDTO implements Serializable{
 
     public void setUserDepartmentRoleId(Integer userDepartmentRoleId) {
         this.userDepartmentRoleId = userDepartmentRoleId;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
     
     

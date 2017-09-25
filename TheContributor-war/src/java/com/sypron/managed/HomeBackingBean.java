@@ -29,27 +29,27 @@ public class HomeBackingBean implements Serializable {
     /**
      * Creates a new instance of LogingBackingBean
      */
-    @Inject
-    UserFacade userFacade;
-    private String ss;
+//    @Inject
+//    UserFacade userFacade;
+//    private String ss;
     
     public HomeBackingBean() {
     }
-    
-    public List<UserDTO> getAll(){
-        List<UserDTO> us = new ArrayList<>();
-        System.out.println("Hes>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>."+SessionUtils.getLoggedUser().getEmail());
-        us.add(SessionUtils.getLoggedUser());
-        return us;
-    }
-
-    public String getSs() {
-        return ss;
-    }
-
-    public void setSs(String ss) {
-        this.ss = ss;
-    }
+//    
+//    public List<UserDTO> getAll(){
+//        List<UserDTO> us = new ArrayList<>();
+//        System.out.println("Hes>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>."+SessionUtils.getLoggedUser().getEmail());
+//        us.add(SessionUtils.getLoggedUser());
+//        return us;
+//    }
+//
+//    public String getSs() {
+//        return ss;
+//    }
+//
+//    public void setSs(String ss) {
+//        this.ss = ss;
+//    }
     
     
 }
