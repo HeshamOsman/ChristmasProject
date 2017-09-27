@@ -13,8 +13,9 @@
 
         <h:form>
             <p:messages id="msgs" closable="true"  />
+            <p:panel class="login-container">
             <p:graphicImage  value="resources/images/sypron_logo.png" class="login-container"  />
-            <p:panelGrid columns="2" class="login-container">
+            <p:panelGrid columns="2" >
                 <p:outputLabel value="Email *" />
                 <p:inputText id="userEmail" value="#{registrationBackingBean.user.email}"
                              required="true" requiredMessage="Email is required"></p:inputText>
@@ -53,6 +54,7 @@
                           value="Login" class="button"></h:button>
 
             </p:panelGrid>
+            </p:panel>
         </h:form>
     </h:body>
 </html>

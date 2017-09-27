@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Suggestion.findAll", query = "SELECT s FROM Suggestion s")
     , @NamedQuery(name = "Suggestion.findById", query = "SELECT s FROM Suggestion s WHERE s.id = :id")
     , @NamedQuery(name = "Suggestion.findBySubject", query = "SELECT s FROM Suggestion s WHERE s.subject = :subject")
-    , @NamedQuery(name = "Suggestion.findByStatusId", query = "SELECT s FROM Suggestion s WHERE s.statusId = :statusId")
+    , @NamedQuery(name = "Suggestion.findByStatus", query = "SELECT s FROM Suggestion s WHERE s.status = :status")
     , @NamedQuery(name = "Suggestion.findByAnonymous", query = "SELECT s FROM Suggestion s WHERE s.anonymous = :anonymous")
     , @NamedQuery(name = "Suggestion.findBySuggestionIdentifier", query = "SELECT s FROM Suggestion s WHERE s.suggestionIdentifier = :suggestionIdentifier")
     , @NamedQuery(name = "Suggestion.findByCreateDate", query = "SELECT s FROM Suggestion s WHERE s.createDate = :createDate")})
