@@ -50,7 +50,7 @@ public class ComplaintListingBackingBean {
     }
     @PostConstruct
     public void onInit(){
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>scope "+scope);
+
         currentUserDTO = SessionUtils.getLoggedUser();
     }
 
@@ -84,11 +84,15 @@ public class ComplaintListingBackingBean {
         if(complaints == null){
             if(currentUserDTO.getPermissionsMap()
                     .get("complaint", "list",scope)==null){
-                FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Not Auth",
-                            null));
+                FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest origRequest = (HttpServletRequest) context.getExternalContext().getRequest();
+        String contextPath = origRequest.getContextPath();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect(contextPath + "/notAuthorized.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
             }else{
                 complaints = complaintFacade.getComplaintsByScope(scope,
                         currentUserDTO.getId(), currentUserDTO.getUserDepartmentId());

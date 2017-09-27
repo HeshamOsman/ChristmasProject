@@ -31,13 +31,16 @@ import javax.servlet.http.HttpServletRequest;
 @ManagedBean
 @ViewScoped
 public class ComplaintBackingBean {
+
+    //mention past complaint
     @Inject
     private ComplaintFacade complaintFacade;
-    
+
     @Inject
     private StatusFacade statusFacade;
     private UserDTO currentUserDTO;
     private Complaint newComplaint;
+
     /**
      * Creates a new instance of ComplaintBackingBean
      */
@@ -53,25 +56,25 @@ public class ComplaintBackingBean {
     public void setNewComplaint(Complaint newComplaint) {
         this.newComplaint = newComplaint;
     }
-    
-     public String addComplaint() {
+
+    public String addComplaint() {
         newComplaint.setStatus(statusFacade.getStatusByName("new"));
-        newComplaint.setComplaintIdentifier("SYP"+System.nanoTime());
+        newComplaint.setComplaintIdentifier("SYP" + System.nanoTime());
         newComplaint.setCreateDate(new Date());
         newComplaint.setUser(new User(currentUserDTO.getId()));
         complaintFacade.create(newComplaint);
-        
-             FacesContext context = FacesContext.getCurrentInstance();
-            HttpServletRequest origRequest = (HttpServletRequest)context.getExternalContext().getRequest();
-    String contextPath = origRequest.getContextPath();
-try {
-        FacesContext.getCurrentInstance().getExternalContext()
-                .redirect(contextPath  + "/complaintsListing.xhtml?scope=user");
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-        
+
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest origRequest = (HttpServletRequest) context.getExternalContext().getRequest();
+        String contextPath = origRequest.getContextPath();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect(contextPath + "/complaintsListing.xhtml?scope=user");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
-    
+
 }
