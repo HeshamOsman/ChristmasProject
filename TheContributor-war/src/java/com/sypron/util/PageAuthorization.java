@@ -20,6 +20,8 @@ public class PageAuthorization {
         PERMISSIONSMAP.put("addUser.xhtml","user", "add",Boolean.TRUE);
         PERMISSIONSMAP.put("complaintForm.xhtml","complaint", "add",Boolean.TRUE);
         PERMISSIONSMAP.put("complaintsListing.xhtml","complaint", "list",Boolean.TRUE);
+        PERMISSIONSMAP.put("suggestionForm.xhtml","suggestion", "add",Boolean.TRUE);
+        PERMISSIONSMAP.put("suggestionsListing.xhtml","suggestion", "list",Boolean.TRUE);
         PERMISSIONSMAP.put("userListing.xhtml","user", "list",Boolean.TRUE);
         PERMISSIONSMAP.put("viewComplaint.xhtml","complaint", "list",Boolean.TRUE);
         PERMISSIONSMAP.put("viewUser.xhtml","user", "list",Boolean.TRUE);

@@ -11,22 +11,22 @@
                 <p:messages id="msgs" closable="true" />
                 <p:panelGrid columns="2" class="login-container">
                     <p:outputLabel value="Subject" />
-                    <p:inputText id="subject" value="#{complaintBackingBean.newComplaint.subject}"
+                    <p:inputText id="subject" value="#{suggestionBackingBean.newSuggestion.subject}"
                                  required="true" requiredMessage="Subject is required"></p:inputText>
 
-                    <p:outputLabel value="Complaint Definition" />
-                    <p:inputTextarea id="definition" value="#{complaintBackingBean.newComplaint.complaintDefinition}"
+                    <p:outputLabel value="Suggestion Definition" />
+                    <p:inputTextarea id="definition" value="#{suggestionBackingBean.newSuggestion.suggestionDefinition}"
                                      required="true" requiredMessage="Definition is required"></p:inputTextarea>
 
-                    <p:outputLabel value="Complaint Resolution" />
-                    <p:inputTextarea id="resolution" value="#{complaintBackingBean.newComplaint.requestedResolution}"
+                    <p:outputLabel value="Suggestion Impact" />
+                    <p:inputTextarea id="impact" value="#{suggestionBackingBean.newSuggestion.suggestionImpact}"
                                      ></p:inputTextarea>
                     <p:outputLabel value="Send As Anonymous" />
-                    <p:selectBooleanCheckbox value="#{complaintBackingBean.newComplaint.anonymous}" />
+                    <p:selectBooleanCheckbox value="#{suggestionBackingBean.newSuggestion.anonymous}" />
 
 
                 </p:panelGrid>  
-                <h:commandButton action="#{complaintBackingBean.addComplaint()}"
+                <h:commandButton action="#{suggestionBackingBean.addSuggestion()}"
                                  class="button"     value="add"></h:commandButton>
 
             </h:form>

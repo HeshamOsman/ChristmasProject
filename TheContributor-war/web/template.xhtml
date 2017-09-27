@@ -45,14 +45,14 @@ background: white !important;
                         </p:submenu>
 
                         <p:submenu label="Suggestion" rendered="#{menuBackingBean.renderSuggestion}" >
-                            <p:menuitem rendered="#{menuBackingBean.renderNewSuggestion}" value="New Suggestion" url="#" />
-                            <p:menuitem rendered="#{menuBackingBean.renderListMySuggestion}" value="My Suggestions" url="#?" >
+                            <p:menuitem rendered="#{menuBackingBean.renderNewSuggestion}" value="New Suggestion" outcome="suggestionForm"/>
+                            <p:menuitem rendered="#{menuBackingBean.renderListMySuggestion}" value="My Suggestions" outcome="suggestionsListing" >
                                 <f:param name="scope" value="user" />
                             </p:menuitem>
-                            <p:menuitem rendered="#{menuBackingBean.renderListDepartmentSuggestion}" value="Department Suggestions" url="#?" >
+                            <p:menuitem rendered="#{menuBackingBean.renderListDepartmentSuggestion}" value="Department Suggestions" outcome="suggestionsListing" >
                                 <f:param name="scope" value="department" />
                             </p:menuitem>
-                            <p:menuitem rendered="#{menuBackingBean.renderListCompanySuggestion}" value="Company Suggestions" url="#?" >
+                            <p:menuitem rendered="#{menuBackingBean.renderListCompanySuggestion}" value="Company Suggestions" outcome="suggestionsListing" >
                                 <f:param name="scope" value="company" />
                             </p:menuitem>
                         </p:submenu>

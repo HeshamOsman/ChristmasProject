@@ -7,11 +7,11 @@
     <ui:define name="content">
         <f:view>
             <f:metadata>
-                <f:viewParam id="user_id" name="scope" value="#{complaintListingBackingBean.scope}"
+                <f:viewParam id="user_id" name="scope" value="#{suggestionListingBackingBean.scope}"
                              required="true" requiredMessage="Please use a link from within the system"/>
             </f:metadata>
            
-            <p:dataTable id="allComplaint" value="#{complaintListingBackingBean.complaints}" var="oneInstance" selection="#{complaintListingBackingBean.selectedComplaint}" 
+            <p:dataTable id="allSuggestions" value="#{suggestionListingBackingBean.suggestions}" var="oneInstance" selection="#{suggestionListingBackingBean.selectedSuggestion}" 
                          rowKey="#{oneInstance.id}" selectionMode="single"
                          sortBy="#{oneInstance.createDate}"
                          paginator="true" rows="10"  
@@ -19,7 +19,7 @@
                          rowsPerPageTemplate="5,10,15"
                          rowStyleClass="#{oneInstance.status.name=='new' ? 'yellow': null}"
                   >
-                <p:ajax event="rowSelect"  listener="#{complaintListingBackingBean.onRowSelected}"/>
+                <p:ajax event="rowSelect"  listener="#{suggestionListingBackingBean.onRowSelected}"/>
 
                 <p:column id="subject" filterBy="#{oneInstance.subject}" filterMatchMode="contains" sortBy="#{oneInstance.subject}" >  
 

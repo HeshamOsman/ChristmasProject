@@ -5,8 +5,16 @@
  */
 package com.sypron.managed;
 
+import com.sypron.dto.UserDTO;
+import com.sypron.entity.Action;
+import com.sypron.entity.Complaint;
+import com.sypron.facade.ActionFacade;
+import com.sypron.facade.StatusFacade;
+import com.sypron.facade.SuggestionFacade;
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 
 /**
  *
@@ -15,7 +23,19 @@ import javax.enterprise.context.Dependent;
 @Named(value = "viewSuggestion")
 @Dependent
 public class ViewSuggestion {
+    @Inject
+    private SuggestionFacade suggestionFacade;
+    @Inject
+    private ActionFacade actionFacade;
 
+    @Inject
+    private StatusFacade statusFacade;
+    private UserDTO currentUserDTO;
+    private Complaint currentComplaint;
+    private Integer complaintIdParam;
+    private List<Action> complaintActions;
+    private Action newComplaintAction;
+    private boolean renderAddAction;
     /**
      * Creates a new instance of ViewSuggestion
      */
